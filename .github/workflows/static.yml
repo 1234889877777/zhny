@@ -37,28 +37,13 @@ jobs:
           pwd
           echo "Files in current directory:"
           ls -la
-      - name: Debug parent directory
-        run: |
-          echo "Parent directory:"
-          cd ..
-          pwd
-          echo "Files in parent directory:"
-          ls -la
-      - name: Copy index.html from parent directory
-        run: |
-          if [ -f "../index.html" ]; then
-            cp ../index.html .
-          else
-            echo "Error: ../index.html does not exist."
-            exit 1
-          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the current directory where index.html is now located
-          path: '.'
+          # Specify the path to the directory containing index.html
+          path: './'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
